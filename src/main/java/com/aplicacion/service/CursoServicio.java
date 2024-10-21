@@ -41,5 +41,9 @@ public class CursoServicio {
     public void deleteById(Long id) {
         cursoRepository.deleteById(id);
     }
+    
+    public List<Curso> listar() {
+        return cursoRepository.findAll();
+    }
 }
 

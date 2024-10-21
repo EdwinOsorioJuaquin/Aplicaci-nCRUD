@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Salón de Clase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #bfe3e3; /* Fondo claro */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #20555e; /* Fondo oscuro */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            color: #fff; /* Texto blanco */
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+        .card-header {
+            background-color: #ffffff; /* Fondo blanco para el encabezado */
+            border-radius: 15px;
+            padding: 20px;
+            margin: -20px -20px 20px -20px;
+            color: #20555e; /* Texto en el mismo color que el resto de la tarjeta */
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+            border: 2px solid #20555e; /* Añade un borde para las esquinas */
+        }
+        .card p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        .btn-primary {
+            background-color: #00c1c1;
+            border: none;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background-color: #009d9d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="card-header">
+        Detalles del Salón de Clase
+    </div>
+    <p><strong>ID:</strong> <span th:text="${classroom.id}">1</span></p>
+    <p><strong>Código:</strong> <span th:text="${classroom.codigo}">A01</span></p>
+    <p><strong>Capacidad:</strong> <span th:text="${classroom.capacidad}">15</span></p>
+    <p><strong>Ubicación:</strong> <span th:text="${classroom.ubicacion}">Facultad de Sistemas</span></p>
+    <p><strong>Docente Asignado:</strong> <span th:text="${classroom.docenteAsignado}">Caselli</span></p>
+    <a href="/classrooms" class="btn btn-primary">Volver a la lista</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.aplicacion.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +24,7 @@ public class Curso {
     @ManyToOne
     @JoinColumn(name = "docente_id")
     private Docente docente;
+    
+    @OneToMany(mappedBy = "curso")
+    private List<Evaluacion> evaluaciones;
 }

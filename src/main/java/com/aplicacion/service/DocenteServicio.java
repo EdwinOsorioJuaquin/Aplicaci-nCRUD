@@ -41,5 +41,9 @@ public class DocenteServicio {
     public void deleteById(Long id) {
         docenteRepository.deleteById(id);
     }
+    
+    public List<Docente> listar() {
+        return docenteRepository.findAll();
+    }
 }
 

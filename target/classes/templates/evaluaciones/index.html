@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Evaluaciones</title>
+</head>
+<body>
+    <h1>Evaluaciones</h1>
+    <a href="/evaluaciones/nuevo">Nueva Evaluación</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Curso</th>
+                <th>Estudiante</th>
+                <th>Nota</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="evaluacion : ${evaluaciones}">
+                <td th:text="${evaluacion.curso.nombre}"></td>
+                <td th:text="${evaluacion.persona.nombres}"></td>
+                <td th:text="${evaluacion.nota}"></td>
+                <td th:text="${evaluacion.fechaEvaluacion}"></td>
+                <td>
+                    <a th:href="@{/evaluaciones/editar/{id}(id=${evaluacion.id})}">Editar</a>
+                    <form th:action="@{/evaluaciones/eliminar/{id}(id=${evaluacion.id})}" method="post">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

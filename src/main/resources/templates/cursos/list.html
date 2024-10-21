@@ -24,7 +24,7 @@
             <td th:text="${curso.id}"></td>
             <td th:text="${curso.nombre}"></td>
             <td th:text="${curso.descripcion}"></td>
-            <td th:text="${curso.docente.nombre} + ' ' + ${curso.docente.apellido}"></td>
+            <td th:text="${curso.docente?.nombre} + ' ' + ${curso.docente?.apellido}"></td>
             <td>
                 <a th:href="@{/cursos/{id}(id=${curso.id})}" class="btn btn-info btn-sm">Ver</a>
                 <a th:href="@{/cursos/editar/{id}(id=${curso.id})}" class="btn btn-warning btn-sm">Editar</a>

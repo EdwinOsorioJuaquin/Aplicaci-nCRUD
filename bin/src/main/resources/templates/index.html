@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación CRUD</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #cc083b;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #cc083b;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            width: 80%;
+            flex-grow: 1;
+        }
+        .table-container {
+            flex: 2;
+            margin-right: 50px;
+        }
+        .logo-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .table td, .table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .btn-table {
+            background-color: #cc083b;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">APLICACIÓN CRUD</div>
+
+    <div class="content">
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>TABLA</th>
+                        <th>ESTUDIANTE</th>
+                        <th>CÓDIGO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a th:href="@{/listar}"  class="btn btn-table">ESTUDIANTES</a></td>
+                        <td>Angeles</td>
+                        <td>0202114033</td>
+                    </tr>
+                    <tr>
+                        <td><a th:href="@{/docentes}"  class="btn btn-table">DOCENTES</a></td>
+                        <td>Liza</td>
+                        <td>0202114033</td>
+                    </tr>
+                    <tr>
+                        <td><a th:href="@{/cursos}"  class="btn btn-table">CURSOS</a></td>
+                        <td>Loma</td>
+                        <td>0202114033</td>
+                    </tr>
+                    <tr>
+						<td><a th:href="@{/classrooms}"  class="btn btn-table">AULAS</a></td>
+                        <td>Lujan</td>
+                        <td>0202114033</td>
+                    </tr>
+                    <tr>
+						<td><a th:href="@{/asignacion}" class="btn btn-table">ASIGNACIÓN</a></td>
+                        <td>Zelada</td>
+                        <td>0202114033</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="logo-container">
+            <img src="/img/Universidad_Nacional_del_Santa_Logo.png" alt="Logo Universidad">
+        </div>
+    </div>
+
+    <div class="footer">NOMBRE PROYECTO</div>
+
+</body>
+</html>
+
+
