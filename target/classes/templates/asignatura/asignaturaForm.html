@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="disenoBase::site-head"></head>
+<body>
+  <header th:replace="disenoBase::site-header"></header>
+  <main class="container p-0" role="main">
+    <div class="container bg-light p-5 rounded mx-auto" id="divCasoForm">
+      <h4 class="text-primary">Datos de Asignatura</h4>
+      <hr>
+      <form class="row g-3" th:object="${asignatura}" th:action="@{(${asignatura.id != null} ? '/asignatura/editar' : '/asignatura/nuevo')}" method="post">
+
+        <!-- Campo Nombre -->
+        <div class="col-md-6 mb-3">
+          <label for="inputNombre" class="form-label">Nombre</label>
+          <input type="text" id="inputNombre" placeholder="Ingrese nombre"
+                 th:classappend="${#fields.hasErrors('nombre')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{nombre}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{nombre}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Descripción -->
+        <div class="col-md-6 mb-3">
+          <label for="inputDescripcion" class="form-label">Descripción</label>
+          <input type="text" id="inputDescripcion" placeholder="Ingrese descripción"
+                 th:classappend="${#fields.hasErrors('descripcion')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{descripcion}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{descripcion}">error</small>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+          <a class="btn btn-secondary" th:href="@{/asignatura/index}">Cancelar</a>
+        </div>
+
+      </form>
+    </div>
+  </main>
+  <footer th:replace="disenoBase::site-footer"></footer>
+  <div th:replace="disenoBase::site-bootstrap"></div>
+</body>
+</html>
+

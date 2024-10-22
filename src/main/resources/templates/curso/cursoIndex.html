@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="disenoBase::site-head"></head>
+<body>
+  <header th:replace="disenoBase::site-header"></header>
+  <main class="container p-0" role="main">
+    <div class="container" id="divCasoForm">
+      <article>
+        <header>
+          <h4 class="text-primary">Listado Cursos</h4>
+          <div role="alert">
+            <div class="alert-dismissible fade show alert alert-success" th:if="${flash != null}">
+              <small th:text="${flash}"></small>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        </header>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Asignatura</th>
+              <th>Aula</th>
+              <th>Docente</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="curso : ${listaCursos}">
+              <td th:text="${curso.nombre}"></td>
+              <td th:text="${curso.descripcion}"></td>
+              <td th:text="${curso.asignatura.nombre}"></td>
+              <td th:text="${curso.aula.nombre}"></td>
+              <td th:text="${curso.docente.nombres} + ' ' + ${curso.docente.apellidos}"></td>
+              <td>
+                <a class="btn btn-outline-warning btn-sm" th:href="@{/curso/editar/}+${curso.id}">
+                  Editar
+                </a>
+              </td>
+              <td>
+                <a class="btn btn-outline-danger btn-sm" th:href="@{/curso/eliminar/}+${curso.id}">
+                  Eliminar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7">
+                <a class="btn btn-outline-success" th:href="@{/curso/nuevo}" role="button">Agregar Curso</a>
+                <a class="btn btn-outline-secondary" th:href="@{/index}" role="button">Regresar</a>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </article>
+    </div>
+  </main>
+  <footer th:replace="disenoBase::site-footer"></footer>
+  <div th:replace="disenoBase::site-bootstrap"></div>
+</body>
+</html>

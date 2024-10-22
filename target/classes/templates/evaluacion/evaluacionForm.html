@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="disenoBase::site-head"></head>
+<body>
+  <header th:replace="disenoBase::site-header"></header>
+  <main class="container p-0" role="main">
+    <div class="container bg-light p-5 rounded mx-auto" id="divCasoForm">
+      <h4 class="text-primary">Datos de Evaluación</h4>
+      <hr>
+      <form class="row g-3" th:object="${evaluacion}" th:action="@{(${evaluacion.id != null} ? '/evaluacion/editar' : '/evaluacion/nuevo')}" method="post">
+
+        <!-- Campo Nota -->
+        <div class="col-md-6 mb-3">
+          <label for="inputNota" class="form-label">Nota</label>
+          <input type="number" step="0.01" id="inputNota" placeholder="Ingrese nota"
+                 th:classappend="${#fields.hasErrors('nota')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{nota}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{nota}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Comentarios -->
+        <div class="col-md-6 mb-3">
+          <label for="inputComentarios" class="form-label">Comentarios</label>
+          <input type="text" id="inputComentarios" placeholder="Ingrese comentarios"
+                 th:classappend="${#fields.hasErrors('comentarios')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{comentarios}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{comentarios}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Curso -->
+        <div class="col-md-6 mb-3">
+          <label for="selectCurso" class="form-label">Curso</label>
+          <select id="selectCurso" name="curso.id"
+                  th:classappend="${#fields.hasErrors('curso.id')} ? 'form-control is-invalid' : 'form-control'"
+                  th:field="*{curso.id}">
+            <option th:each="curso : ${listaCursos}" th:value="${curso.id}"
+                    th:text="${curso.nombre}"
+                    th:selected="${curso.id} == ${evaluacion.curso.id}"></option>
+          </select>
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{curso.id}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Estudiante -->
+        <div class="col-md-6 mb-3">
+          <label for="selectEstudiante" class="form-label">Estudiante</label>
+          <select id="selectEstudiante" name="estudiante.id"
+                  th:classappend="${#fields.hasErrors('estudiante.id')} ? 'form-control is-invalid' : 'form-control'"
+                  th:field="*{estudiante.id}">
+            <option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.id}"
+                    th:text="${estudiante.nombres} + ' ' + ${estudiante.apellidos}"
+                    th:selected="${estudiante.id} == ${evaluacion.estudiante.id}"></option>
+          </select>
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{estudiante.id}">error</small>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+          <a class="btn btn-secondary" th:href="@{/evaluacion/index}">Cancelar</a>
+        </div>
+
+      </form>
+    </div>
+  </main>
+  <footer th:replace="disenoBase::site-footer"></footer>
+  <div th:replace="disenoBase::site-bootstrap"></div>
+</body>
+</html>

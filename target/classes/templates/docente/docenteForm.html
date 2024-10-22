@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="disenoBase::site-head"></head>
+<body>
+  <header th:replace="disenoBase::site-header"></header>
+  <main class="container p-0" role="main">
+    <div class="container bg-light p-5 rounded mx-auto" id="divCasoForm">
+      <h4 class="text-primary">Datos de Docente</h4>
+      <hr>
+      <form class="row g-3" th:object="${docente}" th:action="@{(${docente.id != null} ? '/docente/editar' : '/docente/nuevo')}" method="post">
+
+        <!-- Campo Nombres -->
+        <div class="col-md-6 mb-3">
+          <label for="inputNombre" class="form-label">Nombres</label>
+          <input type="text" id="inputNombre" placeholder="Ingrese nombres"
+                 th:classappend="${#fields.hasErrors('nombres')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{nombres}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{nombres}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Apellidos -->
+        <div class="col-md-6 mb-3">
+          <label for="inputApellidos" class="form-label">Apellidos</label>
+          <input type="text" id="inputApellidos" placeholder="Ingrese apellidos"
+                 th:classappend="${#fields.hasErrors('apellidos')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{apellidos}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{apellidos}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Especialidad -->
+        <div class="col-md-6 mb-3">
+          <label for="inputEspecialidad" class="form-label">Especialidad</label>
+          <input type="text" id="inputEspecialidad" placeholder="Ingrese especialidad"
+                 th:classappend="${#fields.hasErrors('especialidad')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{especialidad}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{especialidad}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Telefono -->
+        <div class="col-md-6 mb-3">
+          <label for="inputTelefono" class="form-label">Telefono</label>
+          <input type="text" id="inputTelefono" placeholder="Ingrese teléfono"
+                 th:classappend="${#fields.hasErrors('telefono')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{telefono}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{telefono}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo DNI -->
+        <div class="col-md-6 mb-3">
+          <label for="inputDni" class="form-label">DNI</label>
+          <input type="text" id="inputDni" placeholder="Ingrese DNI"
+                 th:classappend="${#fields.hasErrors('dni')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{dni}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{dni}">error</small>
+          </div>
+        </div>
+
+        <!-- Campo Correo -->
+        <div class="col-md-6 mb-3">
+          <label for="inputCorreo" class="form-label">Correo</label>
+          <input type="email" id="inputCorreo" placeholder="Ingrese correo electrónico"
+                 th:classappend="${#fields.hasErrors('correo')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{correo}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{correo}">error</small>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+          <a class="btn btn-secondary" th:href="@{/docente/index}">Cancelar</a>
+        </div>
+
+      </form>
+    </div>
+  </main>
+  <footer th:replace="disenoBase::site-footer"></footer>
+  <div th:replace="disenoBase::site-bootstrap"></div>
+</body>
+</html>
