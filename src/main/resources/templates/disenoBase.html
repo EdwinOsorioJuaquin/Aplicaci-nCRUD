@@ -2,236 +2,296 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="site-head">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <title>APLICACION CRUD</title>
+    <link rel="icon" th:href="@{/img/Universidad_Nacional_del_Santa_Logo.png}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-	<title>APLICACION CRUD</title>
-	<link rel="icon" th:href="@{/img/Universidad_Nacional_del_Santa_Logo.png}">
-	<style type="text/css">
+    <style type="text/css">
 		body {
-			min-height: 75rem;
-			padding-top: 4.5rem;
-		}
+				    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				    margin: 0;
+				    padding-top: 3.5rem;
+				    display: flex;
+				    flex-direction: column;
+				    height: 100vh;
+				    background-color: #181818; /* Cambiamos el fondo a gris oscuro */
+					color:#9b062d; 
+					font-size: 20px;
+				  font-weight:bolder;
+				}
 
-		html,
-		body {
-			height: 100%;
-			margin: 0;
-			font-family: Arial, sans-serif;
-		}
+				/* Estilos para el Header */
+				.header {
+				    background-color: rgb(179, 0, 4);
+				    color: white;
+				    text-align: center;
+				    padding: 10px 0;
+				    font-size: 28px;
+				    font-weight: 680;
+				    text-transform: uppercase;
+				    letter-spacing: 1.8px;
+				    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más suave */
+				    border-bottom: 5px solid #9b062d; 
+				}
 
-		.header {
-			background-color: #cc083b;
-			color: white;
-			text-align: center;
-			padding: 25px 0;
-			font-size: 28px;
-			font-weight: bold;
-		}
+				/* Barra de Navegación */
+				.navbar {
+				    background-color: #181818;
+				    padding: 10px;
+				    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				    position: fixed;
+				    top: 0;
+				    z-index: 1000;
+				}
 
-		.footer {
-			background-color: #cc083b;
-			color: white;
-			text-align: center;
-			padding: 20px 0;
-			font-size: 24px;
-			font-weight: bold;
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-		}
+				.navbar-dark .navbar-nav .nav-link {
+				    color: white;
+				    font-weight: 600;
+				    padding: 8px 15px;
+				    transition: color 0.3s ease;
+				}
 
-		.content {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin: 40px auto;
-			width: 80%;
-			flex-grow: 1;
-		}
+				.navbar-dark .navbar-nav .nav-link:hover {
+				    color: #f1c40f;
+				}
 
-		.table-container {
-			flex: 2;
-			margin-right: 50px;
-		}
+				/* Estilos para el Contenido */
+				.content {
+				    display: flex;
+				    justify-content: space-between;
+				    align-items: center;
+				    margin: 5px auto;
+				    width: 90%;
+				    padding: 10px;
+				    background-color: #202020; /* Fondo gris oscuro */
+				    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+				    border-radius: 12px;
+				}
 
-		.logo-container {
-			flex: 1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+				/* Estilos para la Tabla */
+				.table-container {
+				    flex: 2;
+				    margin-right: 20px;
+				}
 
-		.logo-container img {
-			max-width: 100%;
-			height: auto;
-		}
+				.table {
+				    border-collapse: collapse;
+				    background-color: #fefefe; /* Fondo claro para la tabla */
+				    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				    border-radius: 12px;
+				    overflow: hidden;
+				}
 
-		.table td,
-		.table th {
-			text-align: center;
-			vertical-align: middle;
-		}
+				.table th {
+				    background-color: #9b062d;
+				    color: white;
+				    font-size: 16px;
+				    text-transform: uppercase;
+				}
 
-		.btn-table {
-			background-color: #cc083b;
-			color: white;
-			font-weight: bold;
-			width: 100%;
-			height: 100%;
-			border-radius: 0;
-		}
-		
-		footer, header{
-			background-color: #cc083b !important;
-			color: white;
-						font-weight: bold;
-		}
-	</style>
+				.table td,
+				.table th {
+				    text-align: center;
+				    vertical-align: middle;
+				    padding: 12px;
+				    font-size: 14px;
+				}
+
+				.btn-table {
+				    background-color: #9b062d;
+				    color: white;
+				    font-weight: bold;
+				    width: 100%;
+				    height: 100%;
+				    border-radius: 4px;
+				    transition: background-color 0.3s ease, transform 0.3s ease;
+				}
+
+				.btn-table:hover {
+				    background-color: #a30d33;
+				    transform: translateY(-3px); /* Efecto hover para resaltar */
+				}
+
+				/* Estilos para el Logo */
+				.logo-container {
+				    flex: 1;
+				    display: flex;
+				    justify-content: center;
+				    align-items: center;
+				}
+
+				.logo-container img {
+				    max-width: 80%;
+				    height: auto;
+				    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+				    border-radius: 50%;
+				}
+
+				/* Estilos para el Footer */
+				.footer {
+				    background-color: rgb(179, 0, 4);
+				    color: white;
+				    text-align: center;
+				    padding: 5px 0;
+				    font-size: 15px;
+					font-style: italic;
+				    font-weight: 400;
+				    text-transform: uppercase;
+				    border-top: 5px solid #9b062d;
+				    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+				    position: fixed;
+				    bottom: 0;
+				    left: 0;
+				    right: 0;
+				}
+
+
+
+    </style>
 </head>
 
 <body>
-	<header th:fragment="site-header">
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark container fixed-top">
-			<div class="container-fluid">
-				<a class="navbar-brand" th:href="@{/}">
-					<img th:src="@{/img/Universidad_Nacional_del_Santa_Logo.png}" alt="" width="30" height="24"
-						class="d-inline-block align-text-top">
-					APLICACION
-				</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAtencion" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								Usuarios
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdownAtencion">
-								<li><a class="dropdown-item" th:href="@{/estudiante/index}">Registrar Estudiante</a>
-								</li>
-								<li><a class="dropdown-item" th:href="@{/docente/index}">Registrar Docente</a></li>
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li><a class="dropdown-item" th:href="@{/}">Salir</a></li>
-							</ul>
-						</li>
+    <header th:fragment="site-header">
+        <!-- Barra de Navegación -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/}">
+                    <img th:src="@{/img/Universidad_Nacional_del_Santa_Logo.png}" alt="" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    UNS
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAtencion" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Usuarios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAtencion">
+                                <li><a class="dropdown-item" th:href="@{/estudiante/index}">Registrar Estudiante</a></li>
+                                <li><a class="dropdown-item" th:href="@{/docente/index}">Registrar Docente</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" th:href="@{/}">Salir</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProduccion" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Académico
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownProduccion">
+                                <li><a class="dropdown-item" th:href="@{/curso/index}">Registrar Curso</a></li>
+                                <li><a class="dropdown-item" th:href="@{/horario/index}">Registrar Horario</a></li>
+                                <li><a class="dropdown-item" th:href="@{/asignatura/index}">Registrar Asignatura</a></li>
+                                <li><a class="dropdown-item" th:href="@{/aula/index}">Registrar Aula</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" th:href="@{/evaluacion/index}">Registrar Evaluacion</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPagos" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Inscripciones
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPagos">
+                                <li><a class="dropdown-item" th:href="@{/inscripcion/index}">Registrar Inscripcion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProduccion" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								Académico
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdownProduccion">
-								<li><a class="dropdown-item" th:href="@{/curso/index}">Registrar Curso</a></li>
-								<li><a class="dropdown-item" th:href="@{/horario/index}">Registrar Horario</a></li>
-								<li><a class="dropdown-item" th:href="@{/asignatura/index}">Registrar Asignatura</a>
-								</li>
-								<li><a class="dropdown-item" th:href="@{/aula/index}">Registrar Aula</a></li>
+        <!-- Título Principal del Encabezado -->
+        <div class="header">
+            APLICACIÓN CRUD - CEIDUNS
+        </div>
+    </header>
 
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li><a class="dropdown-item" th:href="@{/evaluacion/index}">Registrar Evaluacion</a></li>
-							</ul>
-						</li>
+    <main th:fragment="site-main" class="container p-0">
+        <div class="content">
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>TABLA</th>
+                            <th>ESTUDIANTE</th>
+                            <th>CÓDIGO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a th:href="@{/asignatura/index}" class="btn btn-table">ASIGNATURA</a></td>
+                            <td>Gonzales Berrocal, Luis</td>
+                            <td>0202114015</td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/aula/index}" class="btn btn-table">AULAS</a></td>
+                            <td>Liza Guerrero, Piero</td>
+                            <td>0202114037</td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/curso/index}" class="btn btn-table">CURSOS</a></td>
+                            <td>Loma Aguirre, Mariesther</td>
+                            <td>0202114038</td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/docente/index}" class="btn btn-table">DOCENTES</a></td>
+                            <td>Lujan Trujillo, Anderson</td>
+                            <td>0202114039</td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/estudiante/index}" class="btn btn-table">ESTUDIANTES</a></td>
+                            <td>Osorio Juaquin, Edwin</td>
+                            <td>0202114044</td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/evaluacion/index}" class="btn btn-table">EVALUACIONES</a></td>
+                            <td>Torres Milla, José</td>
+                            <td>0202114009</td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/horario/index}" class="btn btn-table">HORARIOS</a></td>
+                            <td>Zelada Pulido, Rodrigo</td>
+                            <td>0202114018</td>
+                        </tr>
+						<tr>
+						     <td><a th:href="@{/inscripcion/index}" class="btn btn-table">INSCRIPCIONES</a></td>
+						     <td>Adicional</td>
+						     <td>0000000000</td>
+				       </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="logo-container">
+                <img src="/img/CEIDUNS.jpg" alt="Logo Universidad">
+            </div>
+        </div>
+    </main>
 
+    <footer th:fragment="site-footer" id="pie">
+        <div class="footer">
+            &copy; Sistemas - PRODUCTO ORIENTADO A SERVICIOS Y MICROSERVICIOS
+        </div>
+    </footer>
 
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPagos" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								Inscripciones
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdownPagos">
-								<li><a class="dropdown-item" th:href="@{/inscripcion/index}">Registrar Inscripcion</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
-
-	<main th:fragment="site-main" class="container p-0">
-		<div class="header">APLICACIÓN CRUD- UNS </div>
-
-		<div class="content">
-			<div class="table-container">
-				<table class="table table-bordered">
-					<thead class="thead-dark">
-						<tr>
-							<th>TABLA</th>
-							<th>ESTUDIANTE</th>
-							<th>CÓDIGO</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><a th:href="@{/asignatura/index}" class="btn btn-table">ASIGNATURA</a></td>
-							<td>Gonzales</td>
-							<td>0202114015</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/aula/index}" class="btn btn-table">AULAS</a></td>
-							<td>Liza</td>
-							<td>0202114037</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/curso/index}" class="btn btn-table">CURSOS</a></td>
-							<td>Loma</td>
-							<td>0202114038</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/docente/index}" class="btn btn-table">DOCENTES</a></td>
-							<td>Lujan</td>
-							<td>0202114039</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/estudiante/index}" class="btn btn-table">ESTUDIANTES</a></td>
-							<td>Osorio</td>
-							<td>0202114044</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/evaluacion/index}" class="btn btn-table">EVALUACIONES</a></td>
-							<td>Torres</td>
-							<td>0202114009</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/horario/index}" class="btn btn-table">HORARIOS</a></td>
-							<td>Zelada</td>
-							<td>0202114018</td>
-						</tr>
-						<tr>
-							<td><a th:href="@{/inscripcion/index}" class="btn btn-table">INSCRIPCIONES</a></td>
-							<td>Adicional</td>
-							<td>0000000000</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="logo-container">
-				<img src="/img/Universidad_Nacional_del_Santa_Logo.png" alt="Logo Universidad">
-			</div>
-		</div>
-	</main>
-
-	<footer th:fragment="site-footer" id="pie">
-		<div class="container fixed-bottom bg-dark">
-			&copy; Sistemas - PRODUCTO MICROSERVICIOS
-		</div>
-	</footer>
-
-	<div th:fragment="site-bootstrap">
-		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-	</div>
+    <div th:fragment="site-bootstrap">
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </div>
 </body>
 
 </html>
+
+
