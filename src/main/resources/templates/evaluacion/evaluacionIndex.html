@@ -1,13 +1,107 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
-<head th:replace="disenoBase::site-head"></head>
+<head th:replace="disenoBase::site-head">
+  <style>
+    .title-container {
+      display: block; 
+      color: #b21f35 !important; 
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+      visibility: visible !important; 
+      opacity: 1 !important; 
+    }
+
+    .table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.1rem;
+    }
+
+    thead {
+      background-color: #b21f35;
+      color: white;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #f7f7f7;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f2f6;
+      cursor: pointer;
+    }
+
+    .btn {
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .btn-outline-success {
+      border-color: #2ed573;
+      color: #2ed573;
+    }
+
+    .btn-outline-success:hover {
+      background-color: #2ed573;
+      color: white;
+      box-shadow: 0px 4px 10px rgba(46, 213, 115, 0.5);
+    }
+
+    .btn-outline-warning {
+      border-color: #ffa502;
+      color: #ffa502;
+    }
+
+    .btn-outline-warning:hover {
+      background-color: #ffa502;
+      color: white;
+      box-shadow: 0px 4px 10px rgba(255, 165, 2, 0.5);
+    }
+
+    .btn-outline-danger {
+      border-color: #ff6b6b;
+      color: #ff6b6b;
+    }
+
+    .btn-outline-danger:hover {
+      background-color: #ff6b6b;
+      color: white;
+      box-shadow: 0px 4px 10px rgba(255, 107, 107, 0.5);
+    }
+  </style>
+</head>
 <body>
   <header th:replace="disenoBase::site-header"></header>
-  <main class="container p-0" role="main">
+  <main class="container">
     <div class="container" id="divCasoForm">
       <article>
         <header>
-          <h4 class="text-primary">Listado Evaluaciones</h4>
+          <br>
+          <div class="title-container">
+            <a>Listado Evaluaciones</a>
+          </div>
           <div role="alert">
             <div class="alert-dismissible fade show alert alert-success" th:if="${flash != null}">
               <small th:text="${flash}"></small>
@@ -28,37 +122,37 @@
           </thead>
           <tbody>
             <tr th:each="evaluacion : ${listaEvaluaciones}">
-				              <td th:text="${evaluacion.nota}"></td>
-				              <td th:text="${evaluacion.comentarios}"></td>
-				              <td th:text="${evaluacion.estudiante.nombres} + ' ' + ${evaluacion.estudiante.apellidos}"></td>
-				              <td th:text="${evaluacion.curso.nombre}"></td>
-				              <td>
-				                <a class="btn btn-outline-warning btn-sm" th:href="@{/evaluacion/editar/}+${evaluacion.id}">
-				                  Editar
-				                </a>
-				              </td>
-				              <td>
-				                <a class="btn btn-outline-danger btn-sm" th:href="@{/evaluacion/eliminar/}+${evaluacion.id}">
-				                  Eliminar
-				                </a>
-				              </td>
-				            </tr>
-				          </tbody>
-				          <tfoot>
-				            <tr>
-				              <td colspan="6">
-				                <a class="btn btn-outline-success" th:href="@{/evaluacion/nuevo}" role="button">Agregar Evaluación</a>
-				                <a class="btn btn-outline-secondary" th:href="@{/index}" role="button">Regresar</a>
-				              </td>
-				            </tr>
-				          </tfoot>
-				        </table>
-				      </article>
-				    </div>
-				  </main>
-				  <footer th:replace="disenoBase::site-footer"></footer>
-				  <div th:replace="disenoBase::site-bootstrap"></div>
-				</body>
-				</html>
+              <td th:text="${evaluacion.nota}"></td>
+              <td th:text="${evaluacion.comentarios}"></td>
+              <td th:text="${evaluacion.estudiante.nombres} + ' ' + ${evaluacion.estudiante.apellidos}"></td>
+              <td th:text="${evaluacion.curso.nombre}"></td>
+              <td>
+                <a class="btn btn-outline-warning btn-sm" th:href="@{/evaluacion/editar/}+${evaluacion.id}">
+                  Editar
+                </a>
+              </td>
+              <td>
+                <a class="btn btn-outline-danger btn-sm" th:href="@{/evaluacion/eliminar/}+${evaluacion.id}">
+                  Eliminar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">
+                <a class="btn btn-outline-success" th:href="@{/evaluacion/nuevo}" role="button">Agregar Evaluación</a>
+                <a class="btn btn-outline-secondary" th:href="@{/index}" role="button">Regresar</a>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </article>
+    </div>
+  </main>
+  <footer th:replace="disenoBase::site-footer"></footer>
+  <div th:replace="disenoBase::site-bootstrap"></div>
+</body>
+</html>
 
 

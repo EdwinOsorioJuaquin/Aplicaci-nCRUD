@@ -1,106 +1,190 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
-<head th:replace="disenoBase::site-head"></head>
+<head th:replace="disenoBase::site-head">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1c1c1c, #2c2c2c);
+      font-family: 'Poppins', sans-serif;
+      color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 750px;
+    }
+
+    .form-container {
+      background-color: #212121;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+      border: 1px solid #333;
+    }
+
+    h4 {
+      color: #ff6f61;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #ff6f61;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .form-control {
+      background-color: #333;
+      color: #fff;
+      border: 2px solid #444;
+      border-radius: 6px;
+      padding: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-control::placeholder {
+      color: #999;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 10px rgba(255, 111, 97, 0.7);
+      border-color: #ff6f61;
+    }
+
+    .btn-danger {
+      background: linear-gradient(45deg, #ff6f61, #ff5252);
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-danger:hover {
+      background: linear-gradient(45deg, #ff5252, #ff6f61);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(255, 111, 97, 0.6);
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background-color: #495057;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(108, 117, 125, 0.6);
+    }
+
+    hr {
+      border-top: 1px solid #444;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .ml-3 {
+      margin-left: 15px;
+    }
+  </style>
+</head>
 <body>
   <header th:replace="disenoBase::site-header"></header>
-  <main class="container p-0" role="main">
-    <div class="container bg-light p-5 rounded mx-auto" id="divCasoForm">
-      <h4 class="text-primary">Datos de Estudiante</h4>
+  <main class="container py-5">
+    <div class="form-container mx-auto">
+      <h4>Datos de Estudiante</h4>
       <hr>
-      <form class="row g-3" th:object="${estudiante}" th:action="@{(${estudiante.id != null} ? '/estudiante/editar' : '/estudiante/nuevo')}" method="post">
-        <div class="hide">
-          <label for="inputId" class="form-label">ID</label>
-          <input type="hidden" id="inputId" placeholder="Ingrese Id"
-                 th:classappend="${#fields.hasErrors('id')} ? 'form-control is-invalid' : 'form-control is-valid'"
-                 th:field="*{id}" th:value="*{id}" />
-          <div class="invalid-feedback">
-            <small th:errors="*{id}">error</small>
-          </div>
-        </div>
+      <form class="row g-4" th:object="${estudiante}" th:action="@{(${estudiante.id != null} ? '/estudiante/editar' : '/estudiante/nuevo')}" method="post">
 
-        <div class="col-md-6 mb-3">
-          <label for="inputApellido" class="form-label">Nombres</label>
+        <!-- Campo Nombres -->
+        <div class="col-md-6">
+          <label for="inputNombre" class="form-label">Nombres</label>
           <input type="text" id="inputNombre" placeholder="Ingrese nombres"
                  th:classappend="${#fields.hasErrors('nombres')} ? 'form-control is-invalid' : 'form-control'"
-                 th:field="*{nombres}" th:value="*{nombres}" />
-          <div class="valid-feedback">
-            <small>Correcto</small>
-          </div>
+                 th:field="*{nombres}" />
+          <div class="valid-feedback">Correcto</div>
           <div class="invalid-feedback">
             <small th:errors="*{nombres}">error</small>
           </div>
         </div>
 
-        <div class="col-md-6 mb-3">
+        <!-- Campo Apellidos -->
+        <div class="col-md-6">
           <label for="inputApellidos" class="form-label">Apellidos</label>
           <input type="text" id="inputApellidos" placeholder="Ingrese apellidos"
                  th:classappend="${#fields.hasErrors('apellidos')} ? 'form-control is-invalid' : 'form-control'"
-                 th:field="*{apellidos}" th:value="*{apellidos}" />
-          <div class="valid-feedback">
-            <small>Correcto</small>
-          </div>
+                 th:field="*{apellidos}" />
+          <div class="valid-feedback">Correcto</div>
           <div class="invalid-feedback">
             <small th:errors="*{apellidos}">error</small>
           </div>
         </div>
 
-        <div class="col-md-6 mb-3">
-          <label for="inputTelefono" class="form-label">Telefono</label>
-          <input type="text" id="inputTelefono" placeholder="Ingrese Telefono"
+        <!-- Campo Teléfono -->
+        <div class="col-md-6">
+          <label for="inputTelefono" class="form-label">Teléfono</label>
+          <input type="text" id="inputTelefono" placeholder="Ingrese teléfono"
                  th:classappend="${#fields.hasErrors('telefono')} ? 'form-control is-invalid' : 'form-control'"
-                 th:field="*{telefono}" th:value="*{telefono}" />
-          <div class="valid-feedback">
-            <small>Correcto</small>
-          </div>
+                 th:field="*{telefono}" />
+          <div class="valid-feedback">Correcto</div>
           <div class="invalid-feedback">
             <small th:errors="*{telefono}">error</small>
           </div>
         </div>
-		
-		<div class="col-md-6 mb-3">
-		          <label for="inputDni" class="form-label">DNI</label>
-		          <input type="text" id="inputDni" placeholder="Ingrese DNI"
-		                 th:classappend="${#fields.hasErrors('dni')} ? 'form-control is-invalid' : 'form-control'"
-		                 th:field="*{dni}" th:value="*{dni}" />
-		          <div class="valid-feedback">
-		            <small>Correcto</small>
-		          </div>
-		          <div class="invalid-feedback">
-		            <small th:errors="*{dni}">error</small>
-		          </div>
-		        </div>
 
-        <div class="col-md-6 mb-3">
-          <label for="inputEmail" class="form-label">Correo</label>
-          <input type="email" id="inputCorreo" placeholder="Ingrese correo electronico"
-                 th:classappend="${#fields.hasErrors('correo')} ? 'form-control is-invalid' : 'form-control'"
-                 th:field="*{correo}" th:value="*{correo}" />
-          <div class="valid-feedback">
-            <small>Correcto</small>
+        <!-- Campo DNI -->
+        <div class="col-md-6">
+          <label for="inputDni" class="form-label">DNI</label>
+          <input type="text" id="inputDni" placeholder="Ingrese DNI"
+                 th:classappend="${#fields.hasErrors('dni')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{dni}" />
+          <div class="valid-feedback">Correcto</div>
+          <div class="invalid-feedback">
+            <small th:errors="*{dni}">error</small>
           </div>
+        </div>
+
+        <!-- Campo Correo -->
+        <div class="col-md-6">
+          <label for="inputCorreo" class="form-label">Correo</label>
+          <input type="email" id="inputCorreo" placeholder="Ingrese correo electrónico"
+                 th:classappend="${#fields.hasErrors('correo')} ? 'form-control is-invalid' : 'form-control'"
+                 th:field="*{correo}" />
+          <div class="valid-feedback">Correcto</div>
           <div class="invalid-feedback">
             <small th:errors="*{correo}">error</small>
           </div>
         </div>
 
-        <div class="col-md-6 mb-3">
+        <!-- Campo Nivel -->
+        <div class="col-md-6">
           <label for="inputNivel" class="form-label">Nivel</label>
           <input type="text" id="inputNivel" placeholder="Ingrese nivel"
                  th:classappend="${#fields.hasErrors('nivel')} ? 'form-control is-invalid' : 'form-control'"
-                 th:field="*{nivel}" th:value="*{nivel}" />
-          <div class="valid-feedback">
-            <small>Correcto</small>
-          </div>
+                 th:field="*{nivel}" />
+          <div class="valid-feedback">Correcto</div>
           <div class="invalid-feedback">
             <small th:errors="*{nivel}">error</small>
           </div>
         </div>
 
-
-        <div class="col-12 mb-1">
-          <button type="submit" class="btn btn-outline-primary">Aceptar</button>
-          <a class="btn btn-outline-secondary" th:href="@{/estudiante/index}" role="button">Regresar</a>
+        <!-- Botones -->
+        <div class="col-12 text-center">
+          <button class="btn btn-danger" type="submit">Guardar</button>
+          <a class="btn btn-secondary ml-3" th:href="@{/estudiante/index}">Cancelar</a>
         </div>
+
       </form>
     </div>
   </main>
